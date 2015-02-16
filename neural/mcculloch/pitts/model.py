@@ -38,6 +38,8 @@ class Neuron(object):
         wire, neuron threshold, and initial output state.
         """
         self.inputs = inputs
+        if not isinstance(weights, list):
+            weights = list(weights)
         self.weights = weights
         self.threshold = threshold
         self.state = state
