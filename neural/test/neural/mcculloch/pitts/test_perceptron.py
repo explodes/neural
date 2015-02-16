@@ -32,13 +32,11 @@ class PerceptronTestCase(unittest.TestCase):
             state, = n.update(a=a_in, b=b_in, c=c_in, d=d_in)
             return state
 
-        # without learning, the network is accurate 12.5% of the time
         for _a in (0, 1):
             for _b in (0, 1):
                 for _c in (0, 1):
                     for _d in (0, 1):
                         learn(_a, _b, _c, _d)
-                        pass
 
         n_tests = 0
         n_successes = 0
