@@ -97,7 +97,7 @@ class NandNeuron(Neuron):
         super(NandNeuron, self).__init__((a, b), (-1, -1), -1, state=state)
 
 
-class Network:
+class Network(object):
     """
     Helper class for creating and updating functioning networks.
 
