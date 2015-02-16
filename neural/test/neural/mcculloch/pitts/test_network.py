@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 # McCulloch-Pitts neuron model
 #
 # Evan Leis, 2015
@@ -113,7 +111,3 @@ class FullAdderTestCase(unittest.TestCase):
         self.assertEqual(state, (0, 1))
         self.assertEqual(full_adder.output.state, 0)
         self.assertEqual(full_adder.carry.state, 1)
-
-
-if __name__ == '__main__':
-    unittest.main()

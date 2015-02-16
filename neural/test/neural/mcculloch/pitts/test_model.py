@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 # McCulloch-Pitts neuron model
 #
 # Evan Leis, 2015
@@ -323,5 +321,31 @@ class NetworkTestCase(unittest.TestCase):
         self.assertEqual(a.state, 0)
 
 
-if __name__ == '__main__':
-    unittest.main()
+class PedanticTestCase(unittest.TestCase):
+    def test_input_repr(self):
+        a = model.Input()
+        self.assertIsNotNone(repr(a))
+
+    def test_neuron_repr(self):
+        a = model.Neuron((), (), 0)
+        self.assertIsNotNone(repr(a))
+
+    def test_network_repr(self):
+        a = model.Network(model.Input("a"))
+        self.assertIsNotNone(repr(a))
+
+    def test_network_named_input(self):
+        ex = None
+        try:
+            model.Network(model.Input())
+        except ValueError as ex:
+            pass
+        self.assertIsNotNone(ex)
+
+    def test_network_no_duplicate_input(self):
+        ex = None
+        try:
+            model.Network(model.Input("a"), model.Input("a"))
+        except ValueError as ex:
+            pass
+        self.assertIsNotNone(ex)
