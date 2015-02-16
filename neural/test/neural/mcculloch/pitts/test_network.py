@@ -10,13 +10,9 @@
 
 # Make sure things behave like expected
 
-from __future__ import absolute_import
-
 import unittest
 
-from neural.mcculloch.pitts import model
-
-from neural.mcculloch.pitts import network
+from neural.mcculloch.pitts import model, network
 
 
 class XorNetworkTestCase(unittest.TestCase):
@@ -66,7 +62,7 @@ class HalfAdderTestCase(unittest.TestCase):
 
 
 class FullAdderTestCase(unittest.TestCase):
-    def test_half_adder(self):
+    def test_full_adder(self):
         cin = model.Input("cin")
         a = model.Input("a")
         b = model.Input("b")
