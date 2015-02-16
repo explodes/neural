@@ -4,8 +4,8 @@
 #
 # References:
 #
-# [1] Editor Michael A. Arbib
-# "The Handbook of Brain Theory and Neural Networks"
+# [1] "The Handbook of Brain Theory and Neural Networks"
+# Editor Michael A. Arbib
 # Cambridge, Massachusetts; London, England: MIT, 2003
 
 # The example modelling is to imitate a wired connection between inputs,
@@ -149,6 +149,14 @@ class Network(object):
             yield item
 
     def _iter_helper(self, outputs, checked):
+
+        """
+        Iterate in a top-down, left-right fashion over the nodes in the
+        network.
+        This, quite likely, will present bugs in complex logic
+        systems. The order in which input is to be propagated needs to be
+        determined and implemented.
+        """
         for item in outputs:
             if item not in checked:
                 checked.append(item)
@@ -158,6 +166,10 @@ class Network(object):
                 yield item
 
     def update(self, **inputs):
+        """
+        Update the network with the given input values for the given named
+        input nodes.
+        """
         for name, state in inputs.iteritems():
             self.inputs[name].state = state
         for gate in self:

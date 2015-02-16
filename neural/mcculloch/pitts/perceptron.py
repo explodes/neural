@@ -6,8 +6,8 @@
 #
 # References:
 #
-# [1] Editor Michael A. Arbib
-# "The Handbook of Brain Theory and Neural Networks"
+# [1] "The Handbook of Brain Theory and Neural Networks"
+# Editor Michael A. Arbib
 # Cambridge, Massachusetts; London, England: MIT, 2003
 
 # Scratchpad for the implementation of a neuron that can learn.

@@ -21,3 +21,4 @@ Project Neural: Brain Theory and Neural Networks
 | Work | Author | Publisher |
 |------|--------|-----------|
 |"The Handbook of Brain Theory and Neural Networks"|Editor Michael A. Arbib|Cambridge, Massachusetts; London, England: MIT, 2003|
+|[Exclusive OR Gate](http://hyperphysics.phy-astr.gsu.edu/hbase/electronic/xor.html)|Carl Rod Nave|Copyright 2001|

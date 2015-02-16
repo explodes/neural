@@ -4,11 +4,10 @@
 #
 # References:
 #
-# [1] Editor Michael A. Arbib
-# "The Handbook of Brain Theory and Neural Networks"
-# Cambridge, Massachusetts; London, England: MIT, 2003
-#
-# [2] http://hyperphysics.phy-astr.gsu.edu/hbase/electronic/xor.html
+# [1] Exclusive OR Gate
+# http://hyperphysics.phy-astr.gsu.edu/hbase/electronic/xor.html
+# Carl Rod Nave
+# Copyright 2001
 
 # Pre-built logic networks
 
@@ -22,7 +21,7 @@ class XorNetwork(model.Network):
     @staticmethod
     def build_net(a, b):
         """
-        [2] Built as guided by the description provided.
+        [1] Built as guided by the description provided.
         For the equation of the network, see:
         http://hyperphysics.phy-astr.gsu.edu/hbase/electronic/ietron/xor4.gif
         """

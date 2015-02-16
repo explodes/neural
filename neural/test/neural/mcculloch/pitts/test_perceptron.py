@@ -1,12 +1,6 @@
 # McCulloch-Pitts neuron model
 #
 # Evan Leis, 2015
-#
-# References:
-#
-# Editor Michael A. Arbib
-# "The Handbook of Brain Theory and Neural Networks"
-# Cambridge, Massachusetts; London, England: MIT, 2003
 
 # Make sure things behave like expected
 
