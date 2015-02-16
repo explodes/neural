@@ -33,9 +33,8 @@ class XorNetwork(model.Network):
 
 class HalfAdder(model.Network):
     def __init__(self, a, b):
-        super(HalfAdder, self).__init__(*HalfAdder.build_net(a, b))
-        self.output = self.outputs[0]
-        self.carry = self.outputs[1]
+        self.output, self.carry = HalfAdder.build_net(a, b)
+        super(HalfAdder, self).__init__(self.output, self.carry)
 
     @staticmethod
     def build_net(a, b):
@@ -46,9 +45,8 @@ class HalfAdder(model.Network):
 
 class FullAdder(model.Network):
     def __init__(self, cin, a, b):
-        super(FullAdder, self).__init__(*FullAdder.build_net(cin, a, b))
-        self.output = self.outputs[0]
-        self.carry = self.outputs[1]
+        self.output, self.carry = FullAdder.build_net(cin, a, b)
+        super(FullAdder, self).__init__(self.output, self.carry)
 
     @staticmethod
     def build_net(cin, a, b):
