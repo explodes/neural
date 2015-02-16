@@ -6,12 +6,11 @@
 #
 # References:
 #
-# Editor Michael A. Arbib "The Handbook of Brain Theory and Neural Networks"
+# Editor Michael A. Arbib
+# "The Handbook of Brain Theory and Neural Networks"
 # Cambridge, Massachusetts; London, England: MIT, 2003
 
 # Make sure things behave like expected
-
-
 
 from __future__ import absolute_import
 
@@ -22,7 +21,7 @@ from neural.mcculloch.pitts import model
 from neural.mcculloch.pitts import network
 
 
-class XorNetworktests(unittest.TestCase):
+class XorNetworkTestCase(unittest.TestCase):
     def test_xor_network(self):
         a = model.Input("a")
         b = model.Input("b")
@@ -41,7 +40,7 @@ class XorNetworktests(unittest.TestCase):
         self.assertEqual(state, (1,))
 
 
-class HalfAdderTests(unittest.TestCase):
+class HalfAdderTestCase(unittest.TestCase):
     def test_half_adder(self):
         a = model.Input("a")
         b = model.Input("b")
@@ -68,7 +67,7 @@ class HalfAdderTests(unittest.TestCase):
         self.assertEqual(half_adder.carry.state, 0)
 
 
-class FullAdderTests(unittest.TestCase):
+class FullAdderTestCase(unittest.TestCase):
     def test_half_adder(self):
         cin = model.Input("cin")
         a = model.Input("a")

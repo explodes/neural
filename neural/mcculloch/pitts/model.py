@@ -4,7 +4,8 @@
 #
 # References:
 #
-# [1] Editor Michael A. Arbib "The Handbook of Brain Theory and Neural Networks"
+# [1] Editor Michael A. Arbib
+# "The Handbook of Brain Theory and Neural Networks"
 # Cambridge, Massachusetts; London, England: MIT, 2003
 
 # The example modelling is to imitate a wired connection between inputs,
@@ -102,8 +103,8 @@ class Network(object):
     Helper class for creating and updating functioning networks.
 
     Inputs must be named.
-    `update` returns the states of all terminating nodes as they are given during
-    construction.
+    `update` returns the states of all terminating nodes as they are given
+    during construction.
 
     Updates in a TOP-DOWN LEFT-RIGHT direction.
 
@@ -164,5 +165,3 @@ class Network(object):
 
     def __repr__(self):
         return u"Network(*%r)" % (self.outputs,)
-
-

@@ -1,14 +1,26 @@
 #!/usr/bin/env python
 
+# McCulloch-Pitts neuron model
+#
+# Evan Leis, 2015
+#
+# References:
+#
+# Editor Michael A. Arbib
+# "The Handbook of Brain Theory and Neural Networks"
+# Cambridge, Massachusetts; London, England: MIT, 2003
+
+# Make sure things behave like expected
+
 import unittest
 
 from neural.mcculloch.pitts import model
 
 
-class ModelTests(unittest.TestCase):
+class ModelTestCase(unittest.TestCase):
     def test_or_neuron(self):
-        a = model.Input("")
-        b = model.Input("")
+        a = model.Input("a")
+        b = model.Input("b")
         gate = model.OrNeuron(a, b)
 
         a.state = 0
@@ -57,7 +69,7 @@ class ModelTests(unittest.TestCase):
         self.assertEquals(gate.state, 1)
 
     def test_not_neuron(self):
-        a = model.Input("")
+        a = model.Input("a")
         gate = model.NotNeuron(a)
 
         a.state = 0
@@ -69,8 +81,8 @@ class ModelTests(unittest.TestCase):
         self.assertEquals(gate.state, 0)
 
     def test_nand_neuron(self):
-        a = model.Input("")
-        b = model.Input("")
+        a = model.Input("a")
+        b = model.Input("b")
         gate = model.NandNeuron(a, b)
 
         a.state = 0
@@ -93,7 +105,6 @@ class ModelTests(unittest.TestCase):
         gate.update()
         self.assertEquals(gate.state, 0)
 
-
     def test_simple_net(self):
         """
         a -\
@@ -104,16 +115,15 @@ class ModelTests(unittest.TestCase):
             AND /
         d -/
         """
-        a = model.Input("")
-        b = model.Input("")
+        a = model.Input("a")
+        b = model.Input("b")
         g1 = model.AndNeuron(a, b)
 
-        c = model.Input("")
-        d = model.Input("")
+        c = model.Input("c")
+        d = model.Input("d")
         g2 = model.AndNeuron(c, d)
 
         final = model.AndNeuron(g1, g2)
-
 
         def try_states(_a, _b, _c, _d, expected):
             a.state = _a
@@ -145,7 +155,7 @@ class ModelTests(unittest.TestCase):
         try_states(1, 1, 1, 1, 1)
 
 
-class NetworkTests(unittest.TestCase):
+class NetworkTestCase(unittest.TestCase):
     def test_gather_inputs_collects_inputs(self):
         a = model.Input("a")
         b = model.Input("b")
@@ -184,13 +194,13 @@ class NetworkTests(unittest.TestCase):
         f = model.Input("f")
         g = model.Input("g")
         h = model.Input("h")
-        andAA = model.AndNeuron(a, b)
-        andAB = model.AndNeuron(c, d)
-        andA = model.AndNeuron(andAA, andAB)
-        andBA = model.AndNeuron(e, f)
-        andBB = model.AndNeuron(g, h)
-        andB = model.AndNeuron(andBA, andBB)
-        net = model.Network(andA, andB)
+        and_aa = model.AndNeuron(a, b)
+        and_ab = model.AndNeuron(c, d)
+        and_a = model.AndNeuron(and_aa, and_ab)
+        and_ba = model.AndNeuron(e, f)
+        and_bb = model.AndNeuron(g, h)
+        and_b = model.AndNeuron(and_ba, and_bb)
+        net = model.Network(and_a, and_b)
         self.assertEquals(net["a"], a)
         self.assertEquals(net["b"], b)
         self.assertEquals(net["c"], c)
@@ -199,8 +209,8 @@ class NetworkTests(unittest.TestCase):
         self.assertEquals(net["f"], f)
         self.assertEquals(net["g"], g)
         self.assertEquals(net["h"], h)
-        self.assertEquals(net[0], andA)
-        self.assertEquals(net[1], andB)
+        self.assertEquals(net[0], and_a)
+        self.assertEquals(net[1], and_b)
 
     def test_iter_order(self):
         a = model.Input("a")
@@ -211,18 +221,17 @@ class NetworkTests(unittest.TestCase):
         f = model.Input("f")
         g = model.Input("g")
         h = model.Input("h")
-        andAA = model.AndNeuron(a, b)
-        andAB = model.AndNeuron(c, d)
-        andA = model.AndNeuron(andAA, andAB)
-        andBA = model.AndNeuron(e, f)
-        andBB = model.AndNeuron(g, h)
-        andB = model.AndNeuron(andBA, andBB)
-        net = model.Network(andA, andB)
+        and_aa = model.AndNeuron(a, b)
+        and_ab = model.AndNeuron(c, d)
+        and_a = model.AndNeuron(and_aa, and_ab)
+        and_ba = model.AndNeuron(e, f)
+        and_bb = model.AndNeuron(g, h)
+        and_b = model.AndNeuron(and_ba, and_bb)
+        net = model.Network(and_a, and_b)
 
-        self.assertListEqual(list(net),
-                             [a, b, andAA, c, d, andAB, andA, e, f, andBA, g, h,
-                              andBB, andB])
-
+        expected = [a, b, and_aa, c, d, and_ab, and_a, e, f, and_ba, g, h,
+                    and_bb, and_b]
+        self.assertListEqual(list(net), expected)
 
     def test_update(self):
         a = model.Input("a")
@@ -286,7 +295,6 @@ class NetworkTests(unittest.TestCase):
         self.assertEquals(states, (0, 1))
 
     def test_can_create_cyclical_network(self):
-
         a = model.NotNeuron(None)
         a.inputs = [a]
 
@@ -313,7 +321,6 @@ class NetworkTests(unittest.TestCase):
         self.assertEqual(a.state, 1)
         net.update()
         self.assertEqual(a.state, 0)
-
 
 
 if __name__ == '__main__':
