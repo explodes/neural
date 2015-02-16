@@ -37,7 +37,7 @@ class Perceptron(model.Neuron):
 
 
 class SmartNetwork(model.Network):
-    def learn(self, expected_states, learning_rate):
+    def train(self, expected_states, learning_rate):
         """
         It's easy to train an individual neuron.
         It's a lot trickier to train a network.
