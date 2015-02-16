@@ -46,8 +46,5 @@ class SmartNetwork(model.Network):
 
         Δw[ij] = k(Y[i] - y[i])x[j]
         """
-        # TODO: The multi-variable derivatives on page 22 seem a bit outrageous.
-
-
-
-
+        # TODO: The multi-variable derivatives on page 22 seem a bit outrageous
+        pass
